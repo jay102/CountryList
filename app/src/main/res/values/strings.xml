@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">rebtel_assignment</string>
+    <string name="flag">flag</string>
+    <string name="symbol">symbol</string>
+    <string name="currency">Currency</string>
+    <string name="code">code</string>
+    <string name="capital">Capital:</string>
+    <string name="callcodes">Callcodes:</string>
+    <string name="languages">Languages</string>
+    <string name="nativename">NativeName</string>
+    <string name="timezone">Timezone:</string>
+    <string name="population">population:</string>
+</resources>

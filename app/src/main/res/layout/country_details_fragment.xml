@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <android.support.constraint.ConstraintLayout xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="@dimen/constraint_guideline" />
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/cardView"
+            android:layout_width="@dimen/details_fragment_cardview_width"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/details_fragment_cardview_margin_top"
+            android:layout_marginBottom="@dimen/details_fragment_cardview_margin_bottom"
+            app:cardCornerRadius="@dimen/details_fragment_cardview_corner_radius"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardView2">
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/currency_symbol_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="@string/symbol"
+                    android:textSize="@dimen/country_fragment_label_textsize"
+                    android:textStyle="bold"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/currency_code_label"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/currency_code_label" />
+
+                <TextView
+                    android:id="@+id/currency_name_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/country_details_currency_marginstart"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="@string/currency"
+                    android:textSize="@dimen/country_fragment_label_textsize"
+                    android:textStyle="bold"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/currency_code_label"
+                    app:layout_constraintEnd_toStartOf="@+id/currency_code_label"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintHorizontal_chainStyle="spread"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <TextView
+                    android:id="@+id/currency_code_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/country_details_code_margintop"
+                    android:layout_marginBottom="@dimen/country_details_code_marginbottom"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="@string/code"
+                    android:textSize="@dimen/country_fragment_label_textsize"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toTopOf="@+id/currency_code"
+                    app:layout_constraintEnd_toStartOf="@+id/currency_symbol_label"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/currency_name_label"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="1.0" />
+
+
+                <TextView
+                    android:id="@+id/currency_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/country_fragment_currency_name_height"
+                    android:layout_marginTop="@dimen/country_fragment_currency_text_margintop"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textSize="@dimen/country_fragment_textsize"
+                    app:layout_constraintEnd_toEndOf="@+id/currency_name_label"
+                    app:layout_constraintStart_toStartOf="@+id/currency_name_label"
+                    app:layout_constraintTop_toBottomOf="@+id/currency_name_label" />
+
+                <TextView
+                    android:id="@+id/currency_code"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textSize="@dimen/country_fragment_textsize"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/currency_code_label"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="@+id/currency_code_label" />
+
+                <TextView
+                    android:id="@+id/currency_symbol"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/country_fragment_symbol_marginbottom"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textSize="@dimen/country_fragment_textsize"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/currency_symbol_label"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="@+id/currency_symbol_label" />
+            </android.support.constraint.ConstraintLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/cardView3"
+            android:layout_width="@dimen/details_fragment_cardview_width"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="@dimen/details_fragment_cardview_corner_radius"
+            app:layout_constraintBottom_toTopOf="@+id/cardView2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed">
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/languages_name_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/country_details_currency_marginstart"
+                    android:layout_marginTop="@dimen/country_fragment_textsize"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textSize="@dimen/country_fragment_label_textsize"
+                    android:textStyle="bold"
+                    android:text="@string/languages"
+                    app:layout_constraintEnd_toStartOf="@+id/languages_nativename_label"
+                    app:layout_constraintHorizontal_bias="0.06"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:context=".countryDetailsFragment" />
+
+                <TextView
+                    android:id="@+id/language"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/country_fragment_textsize"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textSize="@dimen/country_fragment_textsize"
+                    app:layout_constraintEnd_toEndOf="@+id/languages_name_label"
+                    app:layout_constraintHorizontal_bias="0.542"
+                    app:layout_constraintStart_toStartOf="@+id/languages_name_label"
+                    app:layout_constraintTop_toBottomOf="@+id/languages_name_label" />
+
+                <TextView
+                    android:id="@+id/native_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/country_details_code_margintop"
+                    android:layout_marginBottom="@dimen/country_details_code_margintop"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textSize="@dimen/country_fragment_textsize"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/languages_nativename_label"
+                    app:layout_constraintStart_toStartOf="@+id/languages_nativename_label"
+                    app:layout_constraintTop_toBottomOf="@+id/languages_nativename_label" />
+
+                <TextView
+                    android:id="@+id/languages_nativename_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/country_details_nativename_marginstart"
+                    android:layout_marginTop="@dimen/country_fragment_textsize"
+                    android:layout_marginEnd="@dimen/country_details_code_margintop"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="@string/nativename"
+                    android:textSize="@dimen/country_fragment_label_textsize"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </android.support.constraint.ConstraintLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/cardView2"
+            android:layout_width="@dimen/details_fragment_cardview_width"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/country_details_code_margintop"
+            app:layout_constraintBottom_toTopOf="@+id/cardView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardView3">
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/center_constraintlayout_height">
+
+                <TextView
+                    android:id="@+id/population"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textSize="@dimen/country_fragment_textsize"
+                    app:layout_constraintBottom_toBottomOf="@+id/population_label"
+                    app:layout_constraintEnd_toEndOf="@+id/capital"
+                    app:layout_constraintStart_toStartOf="@+id/capital"
+                    app:layout_constraintTop_toTopOf="@+id/population_label"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <TextView
+                    android:id="@+id/capital_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/capital_label_margin_top"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="@string/capital"
+                    android:textSize="@dimen/country_fragment_label_textsize"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@+id/population_label"
+                    app:layout_constraintTop_toTopOf="@+id/timezone_label" />
+
+                <TextView
+                    android:id="@+id/call_codes_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/callcodes_margin_top"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="@string/callcodes"
+                    android:textSize="@dimen/country_fragment_label_textsize"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@+id/timezone_label"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/callcodes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="76dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textSize="@dimen/country_fragment_textsize"
+                    app:layout_constraintBottom_toBottomOf="@+id/call_codes_label"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/call_codes_label"
+                    app:layout_constraintVertical_bias="1.0" />
+
+                <TextView
+                    android:id="@+id/capital"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textSize="@dimen/country_fragment_textsize"
+                    app:layout_constraintBottom_toBottomOf="@+id/capital_label"
+                    app:layout_constraintEnd_toEndOf="@+id/timezone"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/timezone"
+                    app:layout_constraintTop_toTopOf="@+id/capital_label" />
+
+                <TextView
+                    android:id="@+id/timezone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/timezone_text_margin_end"
+                    android:layout_marginBottom="@dimen/timezone_text_margin_bottom"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textSize="@dimen/country_fragment_textsize"
+                    app:layout_constraintBottom_toBottomOf="@+id/timezone_label"
+                    app:layout_constraintEnd_toEndOf="@+id/callcodes"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/callcodes"
+                    app:layout_constraintTop_toTopOf="@+id/timezone_label"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <TextView
+                    android:id="@+id/timezone_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/country_details_code_margintop"
+                    android:layout_marginTop="@dimen/timezone_label_margin_top"
+                    android:layout_marginEnd="@dimen/timezone_label_margin_end"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="@string/timezone"
+                    android:textSize="@dimen/country_fragment_label_textsize"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.03"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/call_codes_label" />
+
+                <TextView
+                    android:id="@+id/population_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/country_fragment_textsize"
+                    android:layout_marginTop="@dimen/population_label_margin_top"
+                    android:layout_marginEnd="@dimen/population_label_margin_end"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="@string/population"
+                    android:textSize="@dimen/country_fragment_label_textsize"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/capital_label" />
+            </android.support.constraint.ConstraintLayout>
+        </android.support.v7.widget.CardView>
+    </android.support.constraint.ConstraintLayout>
+</layout>

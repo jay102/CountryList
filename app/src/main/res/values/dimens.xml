@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="cardViewTop">5dp</dimen>
+    <dimen name="cardView_radius">2dp</dimen>
+    <dimen name="rel_layout_top">10dp</dimen>
+    <dimen name="rel_layout_bottom">10dp</dimen>
+    <dimen name="circle_image_width">80dp</dimen>
+    <dimen name="circle_image_height">50dp</dimen>
+    <dimen name="circle_image_margin_end">20dp</dimen>
+    <dimen name="country_name_textsize">15sp</dimen>
+    <dimen name="country_name_margin_top">10dp</dimen>
+    <dimen name="constraint_guideline">16dp</dimen>
+    <dimen name="details_fragment_cardview_width">0dp</dimen>
+    <dimen name="details_fragment_cardview_margin_top">8dp</dimen>
+    <dimen name="details_fragment_cardview_margin_bottom">8dp</dimen>
+    <dimen name="details_fragment_cardview_corner_radius">5dp</dimen>
+    <dimen name="country_fragment_label_textsize">19sp</dimen>
+    <dimen name="country_details_currency_marginstart">8dp</dimen>
+    <dimen name="country_details_code_margintop">8dp</dimen>
+    <dimen name="country_details_code_marginbottom">4dp</dimen>
+    <dimen name="country_fragment_textsize">16sp</dimen>
+    <dimen name="country_fragment_currency_text_margintop">4dp</dimen>
+    <dimen name="country_fragment_currency_name_height">0dp</dimen>
+    <dimen name="country_fragment_symbol_marginbottom">4dp</dimen>
+    <dimen name="country_details_nativename_marginstart">228dp</dimen>
+    <dimen name="center_constraintlayout_height">300dp</dimen>
+    <dimen name="country_fragment_population_marginend">36dp</dimen>
+    <dimen name="capital_label_margin_top">56dp</dimen>
+    <dimen name="callcodes_margin_top">20dp</dimen>
+    <dimen name="callcodes_text_margin_end">68dp</dimen>
+    <dimen name="timezone_text_margin_bottom">8dp</dimen>
+    <dimen name="timezone_text_margin_end">60dp</dimen>
+    <dimen name="timezone_label_margin_top">28dp</dimen>
+    <dimen name="timezone_label_margin_end">32dp</dimen>
+    <dimen name="population_label_margin_top">24dp</dimen>
+    <dimen name="population_label_margin_end">268dp</dimen>
+</resources>
