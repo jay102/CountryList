@@ -6,6 +6,7 @@ import android.databinding.DataBindingUtil;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,36 +14,43 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYou;
 import com.jaycodes.rebtel_assignment.databinding.CountryItemViewBinding;
 import com.jaycodes.rebtel_assignment.repository.models.countryModel;
+import com.jaycodes.rebtel_assignment.utils.countryListFilter;
+
 import java.util.ArrayList;
 
-public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.mViewHolder> implements Filterable {
+import static android.support.constraint.Constraints.TAG;
+
+
+public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.mViewHolder> implements Filterable {
 
     private ArrayList<countryModel> countryList;//list of countries populated from mainActivity
-    private ArrayList<countryModel> countryListFull; //copy of List used for filtering
+    public ArrayList<countryModel> countryListFull; //copy of List used for filtering
     private recyclerViewClickListener recyclerViewClickListener; //class variable to track click items
     private Context context;
+    private countryListFilter countryListFilter;
 
-    public RecyclerAdapter(Context context, ArrayList<countryModel> countryList, recyclerViewClickListener recyclerViewClickListener) {
+    public CountryAdapter(Context context, ArrayList<countryModel> countryList, recyclerViewClickListener recyclerViewClickListener) {
         this.countryList = countryList;
-        countryListFull = countryList; //initialize the copy of our list with the original
+        this.countryListFull = countryList; //initialize the copy of our list with the original
         this.context = context;
         this.recyclerViewClickListener = recyclerViewClickListener;
     }
 
     @NonNull
     @Override
-    public RecyclerAdapter.mViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
+    public CountryAdapter.mViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
         //bind our layout and return the view with our clickListener
         CountryItemViewBinding countryItemViewBinding = CountryItemViewBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
         return new mViewHolder(countryItemViewBinding.getRoot(), recyclerViewClickListener);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerAdapter.mViewHolder viewHolder, int i) {
-        countryModel item =  countryListFull.get(i);
+    public void onBindViewHolder(@NonNull CountryAdapter.mViewHolder viewHolder, int i) {
+        countryModel item = countryListFull.get(i);
         viewHolder.bind(item); //bind our viewHolder to get current item and position
     }
 
@@ -53,34 +61,11 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.mViewH
 
     @Override
     public Filter getFilter() {
-        return new Filter() {
-            @Override
-            protected FilterResults performFiltering(CharSequence constraint) {
-                String charString = constraint.toString();
-                if (charString.isEmpty()) {
-                    countryListFull = countryList;
-                }else{
-                    ArrayList<countryModel> filteredList = new ArrayList<>();
-                    for(countryModel model: countryList){
-                        if (model.getName().toLowerCase().startsWith(charString.toLowerCase().trim())) {
-                           // filteredList.clear();
-                            filteredList.add(model);
-                        }
-                    }
-                    countryListFull = filteredList;
-                }
-                FilterResults results = new FilterResults();
-                results.count = countryListFull.size();
-                results.values = countryListFull;
-                return results;
-            }
+        if(countryListFilter == null){
+            countryListFilter = new countryListFilter(this,countryList);
+        }
+      return countryListFilter;
 
-            @Override
-            protected void publishResults(CharSequence constraint, FilterResults results) {
-                countryListFull = (ArrayList<countryModel>) results.values;
-                notifyDataSetChanged();
-            }
-        };
     }
 
     public class mViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -100,7 +85,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.mViewH
             itemView.setOnClickListener(this); //set onClickListener to this
         }
 
-        void bind(countryModel country){
+        void bind(countryModel country) {
             countryItemViewBinding.countries.setText(country.getName()); //set our bound items to corresponding views
             GlideToVectorYou.justLoadImage((Activity) context, Uri.parse(country.getFlag()), countryItemViewBinding.flags);
             currentItem = country; //set current item to the item clicked which is passed down from or onBindViewHolder
@@ -110,13 +95,13 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.mViewH
         public void onClick(View v) {
             //implement our interface onclick method and pass down the view, position and current item clicked
             //which we will have access to in our mainActivity
-            recyclerViewClickListener.onRecyclerViewClick(v, getAdapterPosition(),currentItem);
+            recyclerViewClickListener.onRecyclerViewClick(v, getAdapterPosition(), currentItem);
         }
     }
 
     //public interface to detect clicks on items and pass position
     public interface recyclerViewClickListener {
-        void onRecyclerViewClick(View v, int position,countryModel currentItem);
+        void onRecyclerViewClick(View v, int position, countryModel currentItem);
     }
 
 }

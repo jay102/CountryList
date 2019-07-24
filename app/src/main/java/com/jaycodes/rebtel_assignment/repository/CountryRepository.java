@@ -13,20 +13,20 @@ import com.jaycodes.rebtel_assignment.utils.Resource;
 import java.util.List;
 import retrofit2.Call;
 
-public class Repository {
-    private static Repository repository;
+public class CountryRepository {
+    private static CountryRepository countryRepository;
     private ApiService apiService;
     private countryDatabase db;
 
-//get single instance of repository
-    public static Repository getInstance(Context context) {
-        if (repository == null) {
-            repository = new Repository(context);
+//get single instance of countryRepository
+    public static CountryRepository getInstance(Context context) {
+        if (countryRepository == null) {
+            countryRepository = new CountryRepository(context);
         }
-        return repository;
+        return countryRepository;
     }
 //constructor that takes a context and initializes room database and our request client
-    private Repository(Context context) {
+    private CountryRepository(Context context) {
         apiService = ApiClient.getApiClient().create(ApiService.class);
         db = countryDatabase.getInstance(context);
 
@@ -61,7 +61,7 @@ public class Repository {
     }
 
     //return information gotten from loadCountryList method
-    public LiveData<Resource<List<countryModel>>> getCountriesFromDb() {
+    public LiveData<Resource<List<countryModel>>> getCountries() {
         return loadCountryList();
     }
 }

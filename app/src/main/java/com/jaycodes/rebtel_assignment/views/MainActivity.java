@@ -19,14 +19,14 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 import com.jaycodes.rebtel_assignment.R;
-import com.jaycodes.rebtel_assignment.adapters.RecyclerAdapter;
+import com.jaycodes.rebtel_assignment.adapters.CountryAdapter;
 import com.jaycodes.rebtel_assignment.databinding.CountriesBinding;
 import com.jaycodes.rebtel_assignment.repository.models.countryModel;
 import com.jaycodes.rebtel_assignment.viewModels.MainActivityViewModel;
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements RecyclerAdapter.recyclerViewClickListener, countryDetailsFragment.TitleUpdater {
-    RecyclerAdapter adapter;
+public class MainActivity extends AppCompatActivity implements CountryAdapter.recyclerViewClickListener, countryDetailsFragment.TitleUpdater {
+    CountryAdapter adapter;
     RecyclerView recyclerView;
     ProgressBar progressBar;
     private boolean mTwoPane;
@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerAdapter.r
 //setup recyclerView, layout manager and adapter
     void setUpRecyclerView(){
         if(adapter == null){
-            adapter = new RecyclerAdapter(this,countryModelArrayList,this);
+            adapter = new CountryAdapter(this,countryModelArrayList,this);
             RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
             recyclerView.setLayoutManager(layoutManager);
             recyclerView.setAdapter(adapter);
@@ -107,7 +107,6 @@ public class MainActivity extends AppCompatActivity implements RecyclerAdapter.r
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
-                adapter.getFilter().filter(s);
                 return false;
             }
 

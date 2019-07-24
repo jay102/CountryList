@@ -8,9 +8,13 @@ import android.support.annotation.MainThread;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.WorkerThread;
+import android.util.Log;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static android.support.constraint.Constraints.TAG;
 
 public abstract class NetworkBoundResource<ResultType, RequestType> {
     private final MediatorLiveData<Resource<ResultType>> result = new MediatorLiveData<>();
@@ -47,7 +51,6 @@ public abstract class NetworkBoundResource<ResultType, RequestType> {
         });
     }
 
-    @MainThread
     private void saveResultAndReInit(RequestType response) {
         new AsyncTask<Void, Void, Void>() {
 
@@ -72,7 +75,7 @@ public abstract class NetworkBoundResource<ResultType, RequestType> {
         if(data == null){
             return true;
         }else{
-            return true;
+            return false;
         }
     }
 
