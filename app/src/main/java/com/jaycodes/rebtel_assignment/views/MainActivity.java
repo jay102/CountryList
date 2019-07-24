@@ -18,19 +18,22 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+
 import com.jaycodes.rebtel_assignment.R;
 import com.jaycodes.rebtel_assignment.adapters.CountryAdapter;
 import com.jaycodes.rebtel_assignment.databinding.CountriesBinding;
 import com.jaycodes.rebtel_assignment.repository.models.countryModel;
 import com.jaycodes.rebtel_assignment.viewModels.MainActivityViewModel;
+
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements CountryAdapter.recyclerViewClickListener, countryDetailsFragment.TitleUpdater {
+    private static final String TAG = "rebtel";
     CountryAdapter adapter;
     RecyclerView recyclerView;
     ProgressBar progressBar;
     private boolean mTwoPane;
-    MainActivityViewModel  mainActivityViewModel;
+    MainActivityViewModel mainActivityViewModel;
     ArrayList<countryModel> countryModelArrayList = new ArrayList<>();
     CountriesBinding countriesBinding;
 
@@ -38,10 +41,10 @@ public class MainActivity extends AppCompatActivity implements CountryAdapter.re
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        countriesBinding = DataBindingUtil.setContentView(this,R.layout.countries);
+        countriesBinding = DataBindingUtil.setContentView(this, R.layout.countries);
         recyclerView = countriesBinding.included.recyclerview;
         progressBar = countriesBinding.indeterminateBar;
-        Toolbar toolbar =  countriesBinding.toolbar;
+        Toolbar toolbar = countriesBinding.toolbar;
         setSupportActionBar(toolbar);
         toolbar.setTitle(getTitle());
 
@@ -55,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements CountryAdapter.re
         mainActivityViewModel.init(this);
         mainActivityViewModel.getCountryList().observe(this, listResource -> { //using lambdas to get access to observer and data here
             assert listResource != null;
-            switch (listResource.status){
+            switch (listResource.status) {
                 case LOADING:
                     progressBar.setVisibility(View.VISIBLE); //case where data is loading show progressbar and set to false on success and failure
                     progressBar.setIndeterminate(true);
@@ -69,9 +72,9 @@ public class MainActivity extends AppCompatActivity implements CountryAdapter.re
                 case ERROR:
                     progressBar.setIndeterminate(false);
                     progressBar.setVisibility(View.GONE);
-                    if(listResource.data!= null){
+                    if (listResource.data != null) {
                         countryModelArrayList.addAll(listResource.data);
-                    }else{
+                    } else {
                         Toast.makeText(MainActivity.this, "No data available in Cache, Connect to a network", Toast.LENGTH_LONG).show();
                         Log.e("Error", listResource.message);
                     }
@@ -82,24 +85,26 @@ public class MainActivity extends AppCompatActivity implements CountryAdapter.re
 
 
     }
-//setup recyclerView, layout manager and adapter
-    void setUpRecyclerView(){
-        if(adapter == null){
-            adapter = new CountryAdapter(this,countryModelArrayList,this);
+
+    //setup recyclerView, layout manager and adapter
+    void setUpRecyclerView() {
+        if (adapter == null) {
+            Log.d(TAG, "setUpRecyclerView: " + countryModelArrayList);
+            adapter = new CountryAdapter(this, countryModelArrayList, this);
             RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
             recyclerView.setLayoutManager(layoutManager);
             recyclerView.setAdapter(adapter);
             recyclerView.setItemAnimator(new DefaultItemAnimator());
             recyclerView.setNestedScrollingEnabled(true);
-        }else{
+        } else {
             adapter.notifyDataSetChanged();
         }
-        }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.search_menu,menu);  //inflate menu
+        inflater.inflate(R.menu.search_menu, menu);  //inflate menu
         //find menu item and setQuery listener to detect text and filter
         MenuItem searchItem = menu.findItem(R.id.action_search);
         SearchView searchView = (SearchView) searchItem.getActionView();
@@ -118,10 +123,11 @@ public class MainActivity extends AppCompatActivity implements CountryAdapter.re
         });
         return true;
     }
-//implement interface onClick method and override it to get access to position and current Item being clicked.
+
+    //implement interface onClick method and override it to get access to position and current Item being clicked.
     //if screen is large(landscape) replace fragment with details of clicked item else move to next activity with the details of the clicked item
     @Override
-    public void onRecyclerViewClick(View v, int position,countryModel currentItem) {
+    public void onRecyclerViewClick(View v, int position, countryModel currentItem) {
         if (mTwoPane) {
             Bundle arguments = new Bundle();
             arguments.putString(countryDetailsFragment.COUNTRY_ID, currentItem.getName());
@@ -142,7 +148,7 @@ public class MainActivity extends AppCompatActivity implements CountryAdapter.re
                     .commit();
         } else {
             Intent intent = new Intent(this, countryDetails.class);
-            intent.putExtra("flag",currentItem.getFlag());
+            intent.putExtra("flag", currentItem.getFlag());
             intent.putExtra(countryDetailsFragment.COUNTRY_ID, currentItem.getName());
             intent.putExtra(countryDetailsFragment.COUNTRY_FLAG, currentItem.getFlag());
             intent.putExtra(countryDetailsFragment.COUNTRY_CAPITAL, currentItem.getCapital());
@@ -157,7 +163,8 @@ public class MainActivity extends AppCompatActivity implements CountryAdapter.re
             startActivity(intent);
         }
     }
-//override our title update here for the sake of our Tab view layout
+
+    //override our title update here for the sake of our Tab view layout
     @Override
     public void updateAppBar(String title) {
         countriesBinding.toolbar.setTitle(title);

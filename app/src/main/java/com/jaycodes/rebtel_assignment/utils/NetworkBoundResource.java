@@ -20,7 +20,7 @@ public abstract class NetworkBoundResource<ResultType, RequestType> {
     private final MediatorLiveData<Resource<ResultType>> result = new MediatorLiveData<>();
 
     @MainThread
-   public NetworkBoundResource() {
+    public NetworkBoundResource() {
         result.setValue(Resource.loading(null));
         LiveData<ResultType> dbSource = loadFromDb();
         result.addSource(dbSource, data -> {
@@ -51,6 +51,7 @@ public abstract class NetworkBoundResource<ResultType, RequestType> {
         });
     }
 
+    @WorkerThread
     private void saveResultAndReInit(RequestType response) {
         new AsyncTask<Void, Void, Void>() {
 
@@ -72,11 +73,7 @@ public abstract class NetworkBoundResource<ResultType, RequestType> {
 
     @MainThread
     protected boolean shouldFetch(@Nullable ResultType data) {
-        if(data == null){
-            return true;
-        }else{
-            return false;
-        }
+        return true;
     }
 
     @NonNull
@@ -89,6 +86,7 @@ public abstract class NetworkBoundResource<ResultType, RequestType> {
 
     @MainThread
     protected void onFetchFailed() {
+        Log.d(TAG, "onFetchFailed: ");
     }
 
     public final LiveData<Resource<ResultType>> getAsLiveData() {

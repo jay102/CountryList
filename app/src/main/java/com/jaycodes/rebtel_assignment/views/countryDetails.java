@@ -20,7 +20,7 @@ public class countryDetails extends AppCompatActivity implements countryDetailsF
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState); //bind the required views
-        countryDetailsBinding = DataBindingUtil.setContentView(this,R.layout.activity_country_details);
+        countryDetailsBinding = DataBindingUtil.setContentView(this, R.layout.activity_country_details);
         Toolbar toolbar = countryDetailsBinding.detailToolbar;
         ImageView header = countryDetailsBinding.header;
         setSupportActionBar(toolbar);
@@ -66,17 +66,19 @@ public class countryDetails extends AppCompatActivity implements countryDetailsF
                     .commit();
         }
     }
- //handle back button with navigateUpTo method
+
+    //handle back button with navigateUpTo method
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == android.R.id.home) {
-            navigateUpTo(new Intent(this, MainActivity.class));
+            finish();
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
-//implement interface method from fragment to get access to title being passed then set title of activity
+
+    //implement interface method from fragment to get access to title being passed then set title of activity
     @Override
     public void updateAppBar(String title) {
         countryDetailsBinding.toolbarLayout.setTitle(title);

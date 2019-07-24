@@ -1,10 +1,12 @@
 package com.jaycodes.rebtel_assignment.utils;
 
 
+
 import android.widget.Filter;
 import com.jaycodes.rebtel_assignment.adapters.CountryAdapter;
 import com.jaycodes.rebtel_assignment.repository.models.countryModel;
 import java.util.ArrayList;
+
 
 public class countryListFilter extends Filter {
     private ArrayList<countryModel> countryList;
@@ -27,7 +29,7 @@ public class countryListFilter extends Filter {
             ArrayList<countryModel> filteredList = new ArrayList<>();
             for (countryModel model : countryList) {
                 if (model.getName().toLowerCase().startsWith(charString.toLowerCase().trim())) {
-                    filteredList.clear();
+                   // filteredList.clear();
                     filteredList.add(model);
                 }
             }

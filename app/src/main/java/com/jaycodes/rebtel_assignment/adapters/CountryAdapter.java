@@ -61,10 +61,10 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.mViewHol
 
     @Override
     public Filter getFilter() {
-        if(countryListFilter == null){
-            countryListFilter = new countryListFilter(this,countryList);
+        if (countryListFilter == null) {
+            countryListFilter = new countryListFilter(this, countryList);
         }
-      return countryListFilter;
+        return countryListFilter;
 
     }
 

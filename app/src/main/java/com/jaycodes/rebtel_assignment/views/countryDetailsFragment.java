@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import com.jaycodes.rebtel_assignment.databinding.CountryDetailsFragmentBinding;
 
 public class countryDetailsFragment extends Fragment {
@@ -50,17 +51,19 @@ public class countryDetailsFragment extends Fragment {
         }
 
     }
-//an interface method to be implemented by the hosting activity in other to pass data to the activity which in this case is the title
-    public interface TitleUpdater{
+
+    //an interface method to be implemented by the hosting activity in other to pass data to the activity which in this case is the title
+    public interface TitleUpdater {
         void updateAppBar(String title);
     }
-//initialize interface on fragment onAttach
+
+    //initialize interface on fragment onAttach
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         try {
             titleUpdater = (TitleUpdater) context;
-        }catch (ClassCastException e) {
+        } catch (ClassCastException e) {
             throw new ClassCastException(context.toString()
                     + " must implement OnTitleUpdater");
         }
